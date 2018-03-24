@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e9e8e8">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="19dp"
+        android:layout_height="357dp"></LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:weightSum="1"
+            android:layout_alignParentStart="true">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="508dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CPF"
+                    android:id="@+id/textView3"
+                    android:textSize="25dp"
+                    android:textColor="#000000" />
+
+                <EditText
+                    android:layout_width="438dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.10"></LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Valor"
+                android:id="@+id/textView4"
+                android:layout_weight="0.10"
+                android:textSize="25dp"
+                android:textColor="#010101" />
+
+            <EditText
+                android:layout_width="436dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText4" />
+
+            <Button
+                android:layout_width="437dp"
+                android:layout_height="wrap_content"
+                android:text="Confirmar"
+                android:id="@+id/button2"
+                android:layout_weight="0.10"
+                android:background="#64a6e8" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="436dp"
+                android:layout_height="12dp"></LinearLayout>
+
+            <Button
+                android:layout_width="437dp"
+                android:layout_height="wrap_content"
+                android:text="Consultar"
+                android:id="@+id/button3"
+                android:layout_weight="0.10"
+                android:background="#64a6e8" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
