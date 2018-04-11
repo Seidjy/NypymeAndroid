@@ -7,4 +7,8 @@ import android.support.v7.app.AppCompatActivity;
  */
 
 public class PointsActivity extends AppCompatActivity {
+
+  private void transaction(){
+
+  }
 }

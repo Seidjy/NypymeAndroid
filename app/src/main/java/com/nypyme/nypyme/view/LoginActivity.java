@@ -1,5 +1,7 @@
 package com.nypyme.nypyme.view;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -21,21 +23,66 @@ public class LoginActivity extends AppCompatActivity {
   private EditText user;
   private EditText password;
 
+  /*@Override protected void onCreate(Bundle savedInstanceState) {
+  super.onCreate(savedInstanceState);
+  setContentView(R.layout.activity_main);
+
+  user = findViewById(R.id.user);
+  password = findViewById(R.id.password);
+  Button login = findViewById(R.id.login);
+  login.setOnClickListener(new View.OnClickListener() {
+  @Override public void onClick(View view) {
+  tryToLogin(prepareAccount());
+  }
+  });
+  }
+   */
+
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    user = findViewById(R.id.user);
-    password = findViewById(R.id.password);
+    user = (EditText) findViewById(R.id.user);
+
+    password = (EditText) findViewById(R.id.password);
+
     Button login = findViewById(R.id.login);
     login.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View view) {
-        tryToLogin(prepareAccount());
+        if (verificaConexao()) {
+          boolean canTryLogin = true;
+          if (password.getText().toString().length() == 0) {
+            password.setError("Digite a Senha");
+            canTryLogin = false;
+          }
+          if (user.getText().toString().length() == 0) {
+            user.setError("Digite Nome de Usuário!");
+            canTryLogin = false;
+          }
+          if (canTryLogin) {
+            tryToLogin(prepareAccount());
+          }
+        } else {
+          MessageHelper.showToast(LoginActivity.this, "Verifique sua conexão.");
+        }
       }
     });
   }
 
-  private LoginAccount prepareAccount(){
+  public boolean verificaConexao() {
+    boolean conectado;
+    ConnectivityManager conectivtyManager =
+        (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+    if (conectivtyManager.getActiveNetworkInfo() != null && conectivtyManager.getActiveNetworkInfo()
+        .isAvailable() && conectivtyManager.getActiveNetworkInfo().isConnected()) {
+      conectado = true;
+    } else {
+      conectado = false;
+    }
+    return conectado;
+  }
+
+  private LoginAccount prepareAccount() {
     LoginAccount loginAccount = new LoginAccount();
     loginAccount.setClientId(Constants.CLIENT_ID);
     loginAccount.setClientSecret(Constants.CLIENT_SECRET);
@@ -49,13 +96,15 @@ public class LoginActivity extends AppCompatActivity {
   private void tryToLogin(LoginAccount account) {
     Call<LoginAccount> call = NypymeRest.nypymeRest().login(account);
     call.enqueue(new Callback<LoginAccount>() {
-      @Override public void onResponse(@NonNull Call<LoginAccount> call, @NonNull Response<LoginAccount> response) {
-        if (response.errorBody() == null){
+      @Override public void onResponse(@NonNull Call<LoginAccount> call,
+          @NonNull Response<LoginAccount> response) {
+        if (response.errorBody() == null) {
           PreferencesHelper preferencesHelper = new PreferencesHelper(LoginActivity.this);
           preferencesHelper.saveToken(response.body().getToken());
           MessageHelper.showToast(LoginActivity.this, "Logado.");
+        }else{
+          MessageHelper.showToast(LoginActivity.this, "Dados incorretos.");
         }
-        MessageHelper.showToast(LoginActivity.this, "Dados incorretos.");
 
       }
 
@@ -64,5 +113,4 @@ public class LoginActivity extends AppCompatActivity {
       }
     });
   }
-
 }

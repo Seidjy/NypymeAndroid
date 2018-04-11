@@ -2,15 +2,15 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#a0a0a0"
+    android:background="@color/colorWhite"
     >
 
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:orientation="vertical"
       android:layout_marginLeft="30dp"
       android:layout_marginRight="30dp"
+      android:orientation="vertical"
       >
 
     <ImageView
@@ -21,16 +21,16 @@
         android:background="@drawable/joystick"
         />
 
-      <TextView
-          android:id="@+id/textView"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center_horizontal"
-          android:text="NyPyme"
-          android:textColor="#ffffff"
-          android:textSize="35dp"
-          android:textStyle="bold"
-          />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="NyPyme"
+        android:textColor="@color/colorAccent"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,13 +48,11 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:hint="Email"
-
           >
         <EditText
             android:id="@+id/user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="12"
             />
       </android.support.design.widget.TextInputLayout>
 
@@ -74,13 +72,20 @@
           android:background="@drawable/ic_lock_outline_black_24dp"
           />
 
-      <EditText
-          android:id="@+id/password"
+      <android.support.design.widget.TextInputLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:ems="12"
-          android:inputType="textPassword"
-          />
+          android:hint="Senha"
+
+          >
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="12"
+            />
+      </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
     <Button
@@ -88,22 +93,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
         android:background="#ffffff"
+        android:textColor="@color/colorAccent"
         android:text="Entrar"
         android:textSize="20dp"
-        android:layout_marginTop="10dp"
         />
-
+<!---
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
         android:text="Esqueceu sua senha?"
         android:textColor="#000000"
         android:textSize="20dp"
-        android:layout_marginTop="10dp"
         />
+        !-->
 
   </LinearLayout>
 </ScrollView>
