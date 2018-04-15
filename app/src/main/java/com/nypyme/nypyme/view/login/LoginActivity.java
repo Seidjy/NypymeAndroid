@@ -1,6 +1,7 @@
-package com.nypyme.nypyme.view;
+package com.nypyme.nypyme.view.login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +15,7 @@ import com.nypyme.nypyme.rest.NypymeRest;
 import com.nypyme.nypyme.util.Constants;
 import com.nypyme.nypyme.util.MessageHelper;
 import com.nypyme.nypyme.util.PreferencesHelper;
+import com.nypyme.nypyme.view.home.HomeActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,9 +44,9 @@ public class LoginActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    user = (EditText) findViewById(R.id.user);
+    user = findViewById(R.id.user);
 
-    password = (EditText) findViewById(R.id.password);
+    password = findViewById(R.id.password);
 
     Button login = findViewById(R.id.login);
     login.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +104,9 @@ public class LoginActivity extends AppCompatActivity {
           PreferencesHelper preferencesHelper = new PreferencesHelper(LoginActivity.this);
           preferencesHelper.saveToken(response.body().getToken());
           MessageHelper.showToast(LoginActivity.this, "Logado.");
+
+          startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+
         }else{
           MessageHelper.showToast(LoginActivity.this, "Dados incorretos.");
         }

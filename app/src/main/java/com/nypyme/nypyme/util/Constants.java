@@ -9,4 +9,6 @@ public class Constants {
   public static String CLIENT_SECRET = "p2Mc2ItmkVy89SNFFtdpc6YMQYQ6YhCABKWNGZiA";
   public static String GRANT_TYPE = "password";
   public static String SCOPE = "*";
+  public static String FRAGMENT_POINTS = "Pontuar";
+  public static String FRAGMENT_CONSULT = "Consultar";
 }
