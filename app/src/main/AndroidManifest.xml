@@ -22,6 +22,7 @@
       </intent-filter>
     </activity>
     <activity android:name=".view.home.HomeActivity"></activity>
+    <activity android:name=".view.result.ResultActivity"></activity>
   </application>
 
 </manifest>

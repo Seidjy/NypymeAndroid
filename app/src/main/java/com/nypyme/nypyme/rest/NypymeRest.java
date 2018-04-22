@@ -1,6 +1,8 @@
 package com.nypyme.nypyme.rest;
 
 import com.nypyme.nypyme.rest.service.NypymeService;
+import okhttp3.OkHttpClient;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
@@ -9,6 +11,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
  */
 
 public class NypymeRest {
+
   public static NypymeService nypymeRest(){
     Retrofit retrofit = new Retrofit.Builder().baseUrl("https://nypyme.herokuapp.com/")
         .addConverterFactory(MoshiConverterFactory.create())

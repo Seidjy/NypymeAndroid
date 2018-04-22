@@ -11,4 +11,9 @@ public class Constants {
   public static String SCOPE = "*";
   public static String FRAGMENT_POINTS = "Pontuar";
   public static String FRAGMENT_CONSULT = "Consultar";
+
+  public static String RESULT_CPF = "CPF";
+  public static String RESULT_POINTS_NOW = "POINTS_NOW";
+  public static String RESULT_POINTS_BEFORE = "POINTS_BEFORE";
+
 }

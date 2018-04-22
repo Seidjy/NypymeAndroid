@@ -10,6 +10,7 @@ public class Participant {
   @Json(name = "nome") private String nome;
   @Json(name = "cpf") private String cpf;
   @Json(name = "pontos") private String pontos;
+  @Json(name = "pontosRecebidos") private String pontosRecebidos;
 
   public String getNome() {
     return nome;
@@ -33,5 +34,13 @@ public class Participant {
 
   public void setPontos(String pontos) {
     this.pontos = pontos;
+  }
+
+  public String getPontosRecebidos() {
+    return pontosRecebidos;
+  }
+
+  public void setPontosRecebidos(String pontosRecebidos) {
+    this.pontosRecebidos = pontosRecebidos;
   }
 }

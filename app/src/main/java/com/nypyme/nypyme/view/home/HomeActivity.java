@@ -27,7 +27,7 @@ public class HomeActivity extends AppCompatActivity {
 
     TabLayout tabLayout = findViewById(R.id.tab_layout);
     tabLayout.addTab(tabLayout.newTab().setText(Constants.FRAGMENT_POINTS));
-    tabLayout.addTab(tabLayout.newTab().setText(Constants.FRAGMENT_CONSULT));
+    //tabLayout.addTab(tabLayout.newTab().setText(Constants.FRAGMENT_CONSULT));
     tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
     final ViewPager viewPager = findViewById(R.id.pager);
@@ -56,6 +56,7 @@ public class HomeActivity extends AppCompatActivity {
 
       }
     });
+    getSupportActionBar().setTitle(Constants.FRAGMENT_POINTS);
   }
 
   @Override
