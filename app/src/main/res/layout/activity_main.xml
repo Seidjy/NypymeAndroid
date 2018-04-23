@@ -89,7 +89,7 @@
       android:id="@+id/login"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="@color/colorPrimary"
+      android:background="@drawable/button"
       android:text="Entrar"
       android:textColor="@color/colorWhite"
       android:textSize="20dp"

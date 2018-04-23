@@ -72,7 +72,7 @@
       android:id="@+id/transacao_confirm"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="@color/colorPrimary"
+      android:background="@drawable/button"
       android:textColor="@color/colorWhite"
       style="@style/Base.TextAppearance.AppCompat.Widget.Button"
       android:text="@string/confirm"

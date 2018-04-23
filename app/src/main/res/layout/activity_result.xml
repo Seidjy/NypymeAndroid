@@ -28,37 +28,67 @@
       app:cardCornerRadius="5dp"
 
       >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        >
+      <android.support.v7.widget.AppCompatTextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:gravity="center"
+          android:text="CPF"
+          android:textColor="@color/colorPrimary"
+          android:paddingBottom="10dp"
+          android:textSize="22sp"
+          />
+      <View
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="@color/colorPrimary"
+          />
+      <android.support.v7.widget.AppCompatTextView
+          android:id="@+id/result_cpf"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_alignParentEnd="true"
+          android:gravity="center"
+          android:paddingBottom="10dp"
+          android:paddingTop="10dp"
+          android:text="12345678910"
+          android:textColor="@android:color/black"
+          android:textSize="15sp"
+          />
+    </LinearLayout>
+  </android.support.v7.widget.CardView>
+
+  <android.support.v7.widget.CardView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="5dp"
+      android:layout_marginStart="5dp"
+      android:layout_marginTop="5dp"
+      app:cardCornerRadius="5dp"
+
+      >
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
         tools:ignore="ExtraText"
         >
-      <android.support.v7.widget.AppCompatTextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:paddingBottom="10dp"
-          android:text="CPF:"
-          android:textSize="15sp"
-          />
-      <android.support.v7.widget.AppCompatTextView
-          android:id="@+id/result_cpf"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignParentEnd="true"
-          android:paddingBottom="10dp"
-          android:text="12345678910"
-          android:textSize="15sp"
-          />
+
       <android.support.v7.widget.AppCompatTextView
           android:id="@+id/result_text_view_points"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_below="@+id/result_cpf"
           android:layout_centerHorizontal="true"
           android:paddingBottom="10dp"
           android:text="Pontuação"
-          android:textSize="15sp"
+          android:textColor="@color/colorPrimary"
+          android:textSize="22sp"
           />
       <View
           android:id="@+id/result_line"
@@ -75,6 +105,7 @@
           android:layout_height="wrap_content"
           android:layout_below="@+id/result_line"
           android:text="Agora tem"
+          android:textColor="@android:color/black"
           android:textSize="18sp"
           />
       <android.support.v7.widget.AppCompatTextView
@@ -85,15 +116,17 @@
           android:layout_below="@+id/result_text_view_now"
           android:paddingBottom="10dp"
           android:text="13pts"
+          android:textColor="@android:color/black"
           android:textSize="15sp"
           />
       <android.support.v7.widget.AppCompatTextView
           android:id="@+id/result_text_view_received"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_below="@+id/result_line"
           android:layout_alignParentEnd="true"
+          android:layout_below="@+id/result_line"
           android:text="Recebidos"
+          android:textColor="@android:color/black"
           android:textSize="18sp"
           />
       <android.support.v7.widget.AppCompatTextView
@@ -104,6 +137,7 @@
           android:layout_below="@+id/result_text_view_received"
           android:paddingBottom="10dp"
           android:text="23pts"
+          android:textColor="@android:color/black"
           android:textSize="18sp"
           />
     </RelativeLayout>
