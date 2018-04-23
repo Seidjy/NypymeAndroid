@@ -24,24 +24,14 @@ public class LoginActivity extends AppCompatActivity {
 
   private EditText user;
   private EditText password;
+  PreferencesHelper preferencesHelper;
 
-  /*@Override protected void onCreate(Bundle savedInstanceState) {
-  super.onCreate(savedInstanceState);
-  setContentView(R.layout.activity_main);
-
-  user = findViewById(R.id.user);
-  password = findViewById(R.id.password);
-  Button login = findViewById(R.id.login);
-  login.setOnClickListener(new View.OnClickListener() {
-  @Override public void onClick(View view) {
-  tryToLogin(prepareAccount());
-  }
-  });
-  }
-   */
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
+    preferencesHelper = new PreferencesHelper(LoginActivity.this);
+    isUserLogged();
     setContentView(R.layout.activity_main);
 
     user = findViewById(R.id.user);
@@ -65,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
             tryToLogin(prepareAccount());
           }
         } else {
-          MessageHelper.showToast(LoginActivity.this, "Verifique sua conexão.");
+          MessageHelper.showToast(LoginActivity.this, Constants.MESSAGE_NO_CONNECTION);
         }
       }
     });
@@ -101,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
       @Override public void onResponse(@NonNull Call<LoginAccount> call,
           @NonNull Response<LoginAccount> response) {
         if (response.errorBody() == null) {
-          PreferencesHelper preferencesHelper = new PreferencesHelper(LoginActivity.this);
+
           preferencesHelper.saveToken(response.body().getToken());
           MessageHelper.showToast(LoginActivity.this, "Logado.");
 
@@ -114,8 +104,15 @@ public class LoginActivity extends AppCompatActivity {
       }
 
       @Override public void onFailure(@NonNull Call<LoginAccount> call, @NonNull Throwable t) {
-        MessageHelper.showToast(LoginActivity.this, "Verifique sua conexão com a Internet.");
+        MessageHelper.showToast(LoginActivity.this, Constants.MESSAGE_NO_CONNECTION);
       }
     });
+  }
+
+  private void isUserLogged(){
+    if (!preferencesHelper.getToken().isEmpty()){
+      startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+      finish();
+    }
   }
 }

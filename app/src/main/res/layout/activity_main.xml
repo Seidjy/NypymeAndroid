@@ -32,7 +32,7 @@
           android:layout_height="wrap_content"
           android:layout_gravity="center_horizontal"
           android:text="NyPyme"
-          android:textColor="@color/colorAccent"
+          android:textColor="@color/colorPrimary"
           android:textSize="48dp"
           android:textStyle="bold"
           />
@@ -89,7 +89,7 @@
       android:id="@+id/login"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="@color/colorAccent"
+      android:background="@color/colorPrimary"
       android:text="Entrar"
       android:textColor="@color/colorWhite"
       android:textSize="20dp"

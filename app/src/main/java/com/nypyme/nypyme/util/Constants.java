@@ -16,4 +16,6 @@ public class Constants {
   public static String RESULT_POINTS_NOW = "POINTS_NOW";
   public static String RESULT_POINTS_BEFORE = "POINTS_BEFORE";
 
+  public static String MESSAGE_NO_CONNECTION = "Verifique a sua conexão com a Internet.";
+
 }

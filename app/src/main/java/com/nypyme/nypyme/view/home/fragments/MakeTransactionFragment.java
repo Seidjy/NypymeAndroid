@@ -1,6 +1,8 @@
 package com.nypyme.nypyme.view.home.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,7 +17,10 @@ import com.nypyme.nypyme.R;
 import com.nypyme.nypyme.model.Participant;
 import com.nypyme.nypyme.rest.NypymeRest;
 import com.nypyme.nypyme.util.Constants;
+import com.nypyme.nypyme.util.MaskEditUtil;
+import com.nypyme.nypyme.util.MessageHelper;
 import com.nypyme.nypyme.util.PreferencesHelper;
+import com.nypyme.nypyme.view.login.LoginActivity;
 import com.nypyme.nypyme.view.result.ResultActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,17 +48,35 @@ public class MakeTransactionFragment extends Fragment {
     cpf = view.findViewById(R.id.transacao_cpf);
     amount = view.findViewById(R.id.transacao_valor);
 
+    cpf.addTextChangedListener(MaskEditUtil.mask(cpf,MaskEditUtil.FORMAT_CPF));
+
     Button confirmButton = view.findViewById(R.id.transacao_confirm);
     confirmButton.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View view) {
-        sendDeal();
+        if (verificaConexao()) {
+          boolean canTryLogin = true;
+          if (cpf.getText().toString().length() < 14) {
+            cpf.setError("Digite o CPF");
+            canTryLogin = false;
+          }
+          if (amount.getText().toString().length() == 0) {
+            amount.setError("Digite o valor!");
+            canTryLogin = false;
+          }
+          if (canTryLogin) {
+            sendDeal();
+          }
+        } else {
+          MessageHelper.showToast(getContext(), Constants.MESSAGE_NO_CONNECTION);
+        }
       }
     });
   }
 
+
   private void sendDeal() {
     NypymeRest.nypymeRest()
-        .transaction("Bearer " + preferencesHelper.getToken(), cpf.getText().toString(),
+        .transaction("Bearer " + preferencesHelper.getToken(), MaskEditUtil.unmask(cpf.getText().toString()),
             amount.getText().toString())
         .enqueue(new Callback<Participant>() {
           @Override public void onResponse(@NonNull Call<Participant> call,
@@ -62,7 +85,7 @@ public class MakeTransactionFragment extends Fragment {
             if (response.errorBody() == null) {
 
               Intent intent = new Intent(getContext(), ResultActivity.class);
-              intent.putExtra(Constants.RESULT_CPF, response.body().getCpf());
+              intent.putExtra(Constants.RESULT_CPF, cpf.getText().toString());
               intent.putExtra(Constants.RESULT_POINTS_NOW, response.body().getPontos());
               intent.putExtra(Constants.RESULT_POINTS_BEFORE, response.body().getPontosRecebidos());
               startActivity(intent);
@@ -70,8 +93,22 @@ public class MakeTransactionFragment extends Fragment {
           }
 
           @Override public void onFailure(@NonNull Call<Participant> call, @NonNull Throwable t) {
-
+            MessageHelper.showToast(getContext(), Constants.MESSAGE_NO_CONNECTION);
           }
         });
   }
+  public boolean verificaConexao() {
+    boolean conectado;
+    ConnectivityManager conectivtyManager =
+        (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+    if (conectivtyManager.getActiveNetworkInfo() != null && conectivtyManager.getActiveNetworkInfo()
+        .isAvailable() && conectivtyManager.getActiveNetworkInfo().isConnected()) {
+      conectado = true;
+    } else {
+      conectado = false;
+    }
+    return conectado;
+  }
+
+
 }
